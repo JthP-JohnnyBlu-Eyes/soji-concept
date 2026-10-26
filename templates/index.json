@@ -1,48 +1,246 @@
 {
   "sections": {
-    "hero": { "type": "hero", "settings": {} },
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "link_1": "/collections/nieuw-binnen",
+        "link_2": "/collections/alle-sieraden"
+      }
+    },
     "usp": {
       "type": "usp-bar",
       "blocks": {
-        "u1": { "type": "item", "settings": { "text": "925 sterling zilver" } },
-        "u2": { "type": "item", "settings": { "text": "Waarborgmerk vanaf 8 gram" } },
-        "u3": { "type": "item", "settings": { "text": "Verzekerd verzonden uit Den Haag" } }
+        "u1": {
+          "type": "item",
+          "settings": {
+            "text": "925 sterling zilver"
+          }
+        },
+        "u2": {
+          "type": "item",
+          "settings": {
+            "text": "Waarborgmerk vanaf 8 gram"
+          }
+        },
+        "u3": {
+          "type": "item",
+          "settings": {
+            "text": "Verzekerd verzonden uit Den Haag"
+          }
+        }
       },
-      "block_order": ["u1", "u2", "u3"]
+      "block_order": [
+        "u1",
+        "u2",
+        "u3"
+      ]
     },
-    "promo": { "type": "promo-banner", "settings": {} },
-    "new": { "type": "featured-collection", "settings": { "title": "Nieuw binnen", "limit": 4 } },
+    "promo": {
+      "type": "promo-banner",
+      "settings": {
+        "link": "/collections/topstukken"
+      }
+    },
+    "new": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Nieuw binnen",
+        "limit": 4,
+        "collection": "nieuw-binnen"
+      }
+    },
     "colours": {
       "type": "colour-grid",
       "blocks": {
-        "c1": { "type": "colour", "settings": { "name": "Turquoise & blauw", "color": "#3FB8B2" } },
-        "c2": { "type": "colour", "settings": { "name": "Groen", "color": "#1F7A4D" } },
-        "c3": { "type": "colour", "settings": { "name": "Paars", "color": "#7B4FA8" } },
-        "c4": { "type": "colour", "settings": { "name": "Roze", "color": "#EBC2C6" } },
-        "c5": { "type": "colour", "settings": { "name": "Rood & oranje", "color": "#C2552E" } },
-        "c6": { "type": "colour", "settings": { "name": "Bruin & goud", "color": "#C98A2E" } },
-        "c7": { "type": "colour", "settings": { "name": "Wit & regenboog", "color": "#E4E8EC" } },
-        "c8": { "type": "colour", "settings": { "name": "Zwart", "color": "#1C1C1C" } },
-        "c9": { "type": "colour", "settings": { "name": "Puur zilver", "color": "#D9DDE0" } }
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "name": "Turquoise & blauw",
+            "color": "#3FB8B2",
+            "collection": "turquoise-blauw"
+          }
+        },
+        "c2": {
+          "type": "colour",
+          "settings": {
+            "name": "Groen",
+            "color": "#1F7A4D",
+            "collection": "groen"
+          }
+        },
+        "c3": {
+          "type": "colour",
+          "settings": {
+            "name": "Paars",
+            "color": "#7B4FA8",
+            "collection": "paars"
+          }
+        },
+        "c4": {
+          "type": "colour",
+          "settings": {
+            "name": "Roze",
+            "color": "#EBC2C6",
+            "collection": "roze"
+          }
+        },
+        "c5": {
+          "type": "colour",
+          "settings": {
+            "name": "Rood & oranje",
+            "color": "#C2552E",
+            "collection": "rood-oranje"
+          }
+        },
+        "c6": {
+          "type": "colour",
+          "settings": {
+            "name": "Bruin & goud",
+            "color": "#C98A2E",
+            "collection": "bruin-goud"
+          }
+        },
+        "c7": {
+          "type": "colour",
+          "settings": {
+            "name": "Wit & regenboog",
+            "color": "#E4E8EC",
+            "collection": "wit-regenboog"
+          }
+        },
+        "c8": {
+          "type": "colour",
+          "settings": {
+            "name": "Zwart",
+            "color": "#1C1C1C",
+            "collection": "zwart"
+          }
+        },
+        "c9": {
+          "type": "colour",
+          "settings": {
+            "name": "Puur zilver",
+            "color": "#D9DDE0",
+            "collection": "puur-zilver"
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9"]
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9"
+      ]
     },
     "stones": {
       "type": "stone-row",
       "blocks": {
-        "s1": { "type": "stone", "settings": { "name": "Turquoise", "meaning": "Bescherming", "color": "#3FB8B2" } },
-        "s2": { "type": "stone", "settings": { "name": "Maansteen", "meaning": "Intuïtie", "color": "#E4E8EC" } },
-        "s3": { "type": "stone", "settings": { "name": "Labradoriet", "meaning": "Transformatie", "color": "#4F6B78" } },
-        "s4": { "type": "stone", "settings": { "name": "Malachiet", "meaning": "Groei", "color": "#1F7A4D" } },
-        "s5": { "type": "stone", "settings": { "name": "Amethist", "meaning": "Rust", "color": "#7B4FA8" } },
-        "s6": { "type": "stone", "settings": { "name": "Carneool", "meaning": "Levenslust", "color": "#C2552E" } },
-        "s7": { "type": "stone", "settings": { "name": "Rozenkwarts", "meaning": "Liefde", "color": "#EBC2C6" } },
-        "s8": { "type": "stone", "settings": { "name": "Lapis lazuli", "meaning": "Wijsheid", "color": "#27428F" } }
+        "s1": {
+          "type": "stone",
+          "settings": {
+            "name": "Turquoise",
+            "meaning": "Bescherming",
+            "color": "#3FB8B2",
+            "collection": "turquoise"
+          }
+        },
+        "s2": {
+          "type": "stone",
+          "settings": {
+            "name": "Maansteen",
+            "meaning": "Intuïtie",
+            "color": "#E4E8EC",
+            "collection": "maansteen"
+          }
+        },
+        "s3": {
+          "type": "stone",
+          "settings": {
+            "name": "Labradoriet",
+            "meaning": "Transformatie",
+            "color": "#4F6B78",
+            "collection": "labradoriet"
+          }
+        },
+        "s4": {
+          "type": "stone",
+          "settings": {
+            "name": "Malachiet",
+            "meaning": "Groei",
+            "color": "#1F7A4D",
+            "collection": "malachiet"
+          }
+        },
+        "s5": {
+          "type": "stone",
+          "settings": {
+            "name": "Amethist",
+            "meaning": "Rust",
+            "color": "#7B4FA8",
+            "collection": "amethist"
+          }
+        },
+        "s6": {
+          "type": "stone",
+          "settings": {
+            "name": "Carneool",
+            "meaning": "Levenslust",
+            "color": "#C2552E",
+            "collection": "carneool"
+          }
+        },
+        "s7": {
+          "type": "stone",
+          "settings": {
+            "name": "Rozenkwarts",
+            "meaning": "Liefde",
+            "color": "#EBC2C6",
+            "collection": "rozenkwarts"
+          }
+        },
+        "s8": {
+          "type": "stone",
+          "settings": {
+            "name": "Lapis lazuli",
+            "meaning": "Wijsheid",
+            "color": "#27428F",
+            "collection": "lapis-lazuli"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"]
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ]
     },
-    "story": { "type": "story-teaser", "settings": {} },
-    "insta": { "type": "instagram-newsletter", "settings": {} }
+    "story": {
+      "type": "story-teaser",
+      "settings": {}
+    },
+    "insta": {
+      "type": "instagram-newsletter",
+      "settings": {}
+    }
   },
-  "order": ["hero", "usp", "promo", "new", "colours", "stones", "story", "insta"]
+  "order": [
+    "hero",
+    "usp",
+    "promo",
+    "new",
+    "colours",
+    "stones",
+    "story",
+    "insta"
+  ]
 }
