@@ -42,3 +42,15 @@ document.querySelectorAll('[data-product-form]').forEach((form) => {
     button.textContent = variant.available ? button.dataset.labelAdd : button.dataset.labelSoldOut;
   });
 });
+
+// Pause videos that are hidden when switching gallery slides.
+document.addEventListener('click', (event) => {
+  const thumb = event.target.closest('[data-thumb]');
+  if (!thumb) return;
+  thumb.closest('[data-gallery]').querySelectorAll('[data-slide]').forEach((slide) => {
+    const video = slide.querySelector('video');
+    if (!video) return;
+    if (slide.hidden) video.pause();
+    else video.play().catch(() => {});
+  });
+});
