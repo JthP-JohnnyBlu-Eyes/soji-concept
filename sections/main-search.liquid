@@ -1,0 +1,23 @@
+<div class="wrap" style="padding: 24px 16px 40px">
+  <h1 style="font-size: 32px; margin-bottom: 12px">{{ 'search.title' | t }}</h1>
+  <form class="row" action="{{ routes.search_url }}" method="get" role="search" style="margin-bottom: 20px">
+    <label class="sr" for="q">{{ 'search.label' | t }}</label>
+    <input class="field" id="q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}">
+    <input type="hidden" name="type" value="product">
+    <button class="btn" type="submit">{{ 'general.search' | t }}</button>
+  </form>
+  {%- if search.performed -%}
+    {%- paginate search.results by 24 -%}
+      <p class="meta">{{ 'search.count' | t: count: search.results_count, terms: search.terms }}</p>
+      <div class="grid">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}{%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endpaginate -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Zoeken" }
+{% endschema %}

@@ -1,0 +1,33 @@
+<footer class="foot">
+  <div class="foot__in">
+    <div class="foot__logo">
+      <img src="{{ 'soji-logo-ivory.png' | asset_url }}" alt="{{ shop.name }}" width="400" height="171" loading="lazy">
+      {%- if section.settings.text != blank -%}<p style="font-size: 14px; color: #C7D6D4">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <div>
+      <b>{{ section.settings.menu_1.title }}</b>
+      {%- for link in section.settings.menu_1.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+    </div>
+    <div>
+      <b>{{ section.settings.menu_2.title }}</b>
+      {%- for link in section.settings.menu_2.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+    </div>
+    <div class="foot__small">
+      {{ section.settings.payments }}<br>
+      © {{ 'now' | date: '%Y' }} {{ shop.name }}{% if section.settings.legal != blank %} · {{ section.settings.legal }}{% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Korte tekst", "default": "Zilveren sieraden met een ziel, vanuit Den Haag." },
+    { "type": "link_list", "id": "menu_1", "label": "Menu 1", "default": "footer" },
+    { "type": "link_list", "id": "menu_2", "label": "Menu 2" },
+    { "type": "text", "id": "payments", "label": "Betaalmethodes", "default": "iDEAL | Wero · Visa · Mastercard · PayPal" },
+    { "type": "text", "id": "legal", "label": "Bedrijfsgegevens", "default": "Den Haag · KvK [nummer]" }
+  ]
+}
+{% endschema %}

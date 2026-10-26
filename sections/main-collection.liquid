@@ -1,0 +1,72 @@
+{%- paginate collection.products by section.settings.per_page -%}
+<div class="wrap">
+  <section style="padding: 24px 0 8px">
+    <h1 style="font-size: 32px">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}<div class="rte sub">{{ collection.description }}</div>{%- endif -%}
+    <span class="meta">{{ 'collections.count' | t: count: collection.products_count }}</span>
+  </section>
+
+  <form class="filters" data-auto-submit action="{{ collection.url }}" method="get">
+    {%- for filter in collection.filters -%}
+      {%- if filter.type == 'list' -%}
+        <details {% if filter.active_values.size > 0 or forloop.first %}open{% endif %}>
+          <summary>{{ filter.label }}{% if filter.active_values.size > 0 %} ({{ filter.active_values.size }}){% endif %}</summary>
+          <div class="chips">
+            {%- for value in filter.values -%}
+              <label class="chip">
+                <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                {%- if value.swatch.color -%}
+                  <i style="background: {{ value.swatch.color }}"></i>
+                {%- else -%}
+                  {%- capture swatch -%}{% render 'stone-color', name: value.label %}{%- endcapture -%}
+                  {%- unless swatch contains 'D9DDE0' -%}<i style="background: {{ swatch | strip }}"></i>{%- endunless -%}
+                {%- endif -%}
+                {{ value.label }} <span class="meta" style="color: inherit">({{ value.count }})</span>
+              </label>
+            {%- endfor -%}
+          </div>
+        </details>
+      {%- endif -%}
+    {%- endfor -%}
+    <div class="filters__bar">
+      {%- assign active = 0 -%}
+      {%- for filter in collection.filters -%}{%- assign active = active | plus: filter.active_values.size -%}{%- endfor -%}
+      {%- if active > 0 -%}<a class="chip" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">{{ 'collections.clear' | t }}</a>{%- else -%}<span></span>{%- endif -%}
+      <label class="sr" for="sort">{{ 'collections.sort' | t }}</label>
+      <select id="sort" name="sort_by">
+        {%- for option in collection.sort_options -%}
+          <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+    <noscript><button class="btn" type="submit">{{ 'collections.apply' | t }}</button></noscript>
+  </form>
+
+  <section style="padding: 18px 0 40px">
+    <div class="grid">
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <p class="notice" style="grid-column: 1 / -1">{{ 'collections.empty' | t }}</p>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" aria-label="{{ 'general.pagination' | t }}">
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span aria-current="page">{{ part.title }}</span>{%- endif -%}
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+  </section>
+</div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collectie",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Producten per pagina", "min": 8, "max": 48, "step": 4, "default": 24 },
+    { "type": "paragraph", "content": "Filters (kleur, steen, soort) stel je in met de gratis app Search & Discovery." }
+  ]
+}
+{% endschema %}

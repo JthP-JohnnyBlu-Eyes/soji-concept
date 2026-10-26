@@ -1,0 +1,22 @@
+<div class="wrap" style="padding-top: 28px">
+  <a class="panel-outline" href="{{ section.settings.link | default: routes.collections_url }}">
+    {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    <span class="serif" style="font-size: 26px; line-height: 1.15">{{ section.settings.title }}</span>
+    {%- if section.settings.text != blank -%}<span style="font-size: 14px; color: var(--muted)">{{ section.settings.text }}</span>{%- endif -%}
+    <span style="font-weight: 600; color: var(--teal)">{{ section.settings.link_label }} →</span>
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "Promotie-banner",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Bovenregel", "default": "Vanaf 1 december" },
+    { "type": "text", "id": "title", "label": "Titel", "default": "Topstukken uit onze winkel, met mooie aanbiedingen" },
+    { "type": "text", "id": "text", "label": "Tekst", "default": "Een handvol prachtstukken. Op is op." },
+    { "type": "text", "id": "link_label", "label": "Linktekst", "default": "Bekijk de topstukken" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Promotie-banner" }]
+}
+{% endschema %}

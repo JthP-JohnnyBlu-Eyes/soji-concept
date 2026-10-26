@@ -1,0 +1,80 @@
+{
+  "general": {
+    "skip_to_content": "Naar de inhoud",
+    "page": "pagina {{ page }}",
+    "menu": "Menu",
+    "main_menu": "Hoofdmenu",
+    "search": "Zoek",
+    "cart_count": {
+      "one": "Winkelmand, {{ count }} artikel",
+      "other": "Winkelmand, {{ count }} artikelen"
+    },
+    "view_all": "Bekijk alles",
+    "home": "Home",
+    "breadcrumbs": "Kruimelpad",
+    "pagination": "Paginering",
+    "product_code": "Productcode",
+    "code_placeholder": "bijv. SJ-0412",
+    "not_found": "Deze pagina bestaat niet (meer)",
+    "back_home": "Terug naar home"
+  },
+  "sections": {
+    "empty_collection": "Kies in de theme-editor een collectie voor deze sectie."
+  },
+  "products": {
+    "sale": "Aanbieding",
+    "unique": "Uniek stuk",
+    "code": "Code",
+    "last_one": "Nog 1 op voorraad · je krijgt dit exacte stuk",
+    "stone": "Steen",
+    "silver": "Zilver",
+    "size": "Afmeting",
+    "weight": "Gewicht",
+    "origin": "Herkomst",
+    "add": "In winkelmand",
+    "sold_out": "Uitverkocht",
+    "show_photo": "Toon foto {{ number }}"
+  },
+  "collections": {
+    "all": "Alle collecties",
+    "count": {
+      "one": "{{ count }} sieraad",
+      "other": "{{ count }} sieraden"
+    },
+    "clear": "Filters wissen",
+    "sort": "Sorteren",
+    "apply": "Toepassen",
+    "empty": "Nog niets in deze selectie."
+  },
+  "cart": {
+    "title": "Winkelmand",
+    "remove": "Verwijderen",
+    "quantity": "Aantal",
+    "subtotal": "Subtotaal",
+    "shipping_note": "Verzendkosten en btw zie je bij het afrekenen.",
+    "update": "Bijwerken",
+    "checkout": "Afrekenen",
+    "empty": "Je winkelmand is leeg.",
+    "continue": "Verder winkelen"
+  },
+  "search": {
+    "title": "Zoeken",
+    "label": "Zoek een sieraad of code",
+    "placeholder": "Zoek op naam, steen of code",
+    "count": {
+      "one": "{{ count }} resultaat voor ‘{{ terms }}’",
+      "other": "{{ count }} resultaten voor ‘{{ terms }}’"
+    }
+  },
+  "newsletter": {
+    "email": "E-mailadres",
+    "placeholder": "jij@voorbeeld.nl",
+    "button": "Zet me op de lijst",
+    "success": "Dank je, je staat op de lijst."
+  },
+  "password": {
+    "enter": "Winkel openen met wachtwoord",
+    "label": "Wachtwoord",
+    "button": "Openen"
+  }
+}

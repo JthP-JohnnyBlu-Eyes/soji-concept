@@ -1,0 +1,35 @@
+<section class="wrap s">
+  <div class="head"><div><h2>{{ section.settings.title }}</h2>{%- if section.settings.text != blank -%}<p class="sub">{{ section.settings.text }}</p>{%- endif -%}</div></div>
+  <div class="swatches">
+    {%- for block in section.blocks -%}
+      {%- assign c = block.settings.collection -%}
+      {%- if c == blank or c.products_count > 0 or request.design_mode -%}
+        <a class="swatch" href="{{ c.url | default: '#' }}" {{ block.shopify_attributes }}>
+          <i style="background: {{ block.settings.color }}"></i>{{ block.settings.name }}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop op kleur",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titel", "default": "Shop op kleur" },
+    { "type": "text", "id": "text", "label": "Ondertitel", "default": "Zoals in onze winkel: elke kleur zijn eigen plank." },
+    { "type": "paragraph", "content": "Een kleur zonder producten wordt automatisch verborgen." }
+  ],
+  "max_blocks": 12,
+  "blocks": [{
+    "type": "colour",
+    "name": "Kleur",
+    "settings": [
+      { "type": "text", "id": "name", "label": "Naam", "default": "Groen" },
+      { "type": "color", "id": "color", "label": "Kleur", "default": "#1F7A4D" },
+      { "type": "collection", "id": "collection", "label": "Collectie" }
+    ]
+  }],
+  "presets": [{ "name": "Shop op kleur" }]
+}
+{% endschema %}

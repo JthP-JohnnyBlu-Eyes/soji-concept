@@ -1,0 +1,32 @@
+{%- comment -%}
+  Stand-in for a product photo: a silver-set stone in the product's colour.
+  Usage: {% render 'gem-placeholder', product: product, size: 'large' %}
+{%- endcomment -%}
+{%- liquid
+  assign color_name = product.metafields.custom.steen.value | default: product.metafields.custom.kleur.value
+  capture color
+    render 'stone-color', name: color_name
+  endcapture
+  assign w = 56
+  assign h = 76
+  assign r = '50%'
+  case product.type
+    when 'Armbanden'
+      assign w = 96
+      assign h = 40
+      assign r = '20px'
+    when 'Kettingen'
+      assign w = 64
+      assign h = 80
+      assign r = '50% 50% 50% 50% / 40% 40% 60% 60%'
+    when 'Oorbellen'
+      assign w = 40
+      assign h = 60
+      assign r = '50% 50% 50% 50% / 60% 60% 40% 40%'
+  endcase
+  if size == 'large'
+    assign w = w | times: 2
+    assign h = h | times: 2
+  endif
+-%}
+<span class="gem" aria-hidden="true" style="width: {{ w }}px; height: {{ h }}px; border-radius: {{ r }}; background: {{ color | strip }};"></span>

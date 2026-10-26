@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "a1": { "type": "accordion", "settings": { "title": "Zilver en waarborgmerk", "text": "<p>925 sterling zilver. Stukken vanaf 8 gram laten we in Nederland keuren en stempelen voordat ze online komen. Lichtere stukken dragen het 925-stempel van de maker.</p>", "open": true } },
+        "a2": { "type": "accordion", "settings": { "title": "Verzorging", "text": "<p>Bewaar je sieraad droog in het Soji-zakje. Poets zilver met een zilverdoekje.</p>" } },
+        "a3": { "type": "accordion", "settings": { "title": "Verzending en retour", "text": "<p>Verzekerd verzonden vanuit Den Haag. Retourneren binnen [14] dagen.</p>" } }
+      },
+      "block_order": ["a1", "a2", "a3"]
+    },
+    "related": { "type": "featured-collection", "settings": { "title": "Mooi in combinatie met", "limit": 4 } }
+  },
+  "order": ["main", "related"]
+}

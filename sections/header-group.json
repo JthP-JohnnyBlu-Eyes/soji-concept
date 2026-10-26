@@ -1,0 +1,9 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": { "type": "announcement-bar", "settings": { "text": "Vanaf 1 december: topstukken in de promotie →", "link": "" } },
+    "header": { "type": "header", "settings": { "tagline": "Seeds of Joy Intentions", "menu": "main-menu", "accent_last": true } }
+  },
+  "order": ["announcement", "header"]
+}

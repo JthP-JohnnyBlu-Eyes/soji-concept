@@ -1,0 +1,37 @@
+{%- comment -%}
+  Usage: {% render 'product-card', product: product %}
+{%- endcomment -%}
+<a class="card" href="{{ product.url }}">
+  <div class="tile">
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 900px) 25vw, 50vw', alt: product.featured_media.alt | default: product.title }}
+    {%- else -%}
+      {% render 'gem-placeholder', product: product %}
+    {%- endif -%}
+    {%- if product.compare_at_price > product.price -%}
+      <span class="tag tag--sale">{{ 'products.sale' | t }}</span>
+    {%- elsif product.metafields.custom.uniek.value -%}
+      <span class="tag">{{ 'products.unique' | t }}</span>
+    {%- endif -%}
+    {%- if product.metafields.custom.land != blank -%}
+      <span class="orig">{{ product.metafields.custom.land.value }}</span>
+    {%- endif -%}
+  </div>
+  <span style="font-size: 14px; line-height: 1.3">{{ product.title }}</span>
+  {%- if product.metafields.custom.steen != blank -%}
+    <span class="meta">{{ product.metafields.custom.steen.value }}{% if product.type != blank %} · {{ product.type }}{% endif %}</span>
+  {%- endif -%}
+  <span class="price">
+    <span>
+      {%- if product.compare_at_price > product.price -%}
+        <s>{{ product.compare_at_price | money }}</s>
+        <strong class="is-sale">{{ product.price | money }}</strong>
+      {%- else -%}
+        <strong>{{ product.price | money }}</strong>
+      {%- endif -%}
+    </span>
+    {%- if product.selected_or_first_available_variant.sku != blank -%}
+      <span class="meta">{{ product.selected_or_first_available_variant.sku }}</span>
+    {%- endif -%}
+  </span>
+</a>

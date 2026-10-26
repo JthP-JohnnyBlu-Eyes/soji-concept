@@ -1,0 +1,114 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign m = product.metafields.custom -%}
+<div class="wrap" style="padding-bottom: 32px">
+  <nav style="padding: 10px 0; font-size: 12px; color: var(--muted2)" aria-label="{{ 'general.breadcrumbs' | t }}">
+    <a href="{{ routes.root_url }}" style="color: var(--muted2)">{{ 'general.home' | t }}</a>
+    {%- if collection -%} / <a href="{{ collection.url }}" style="color: var(--muted2)">{{ collection.title }}</a>{%- endif -%}
+    / {{ product.title }}
+  </nav>
+  <div class="pdp">
+    <div class="gallery" data-gallery>
+      {%- if product.media.size > 0 -%}
+        {%- for media in product.media -%}
+          <div class="tile gallery__main" data-slide="{{ forloop.index }}" {% unless forloop.first %}hidden{% endunless %}>
+            {{ media.preview_image | image_url: width: 1200 | image_tag: widths: '500, 800, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: media.alt | default: product.title }}
+            {%- if forloop.first and m.uniek.value -%}<span class="tag">{{ 'products.unique' | t }}</span>{%- endif -%}
+          </div>
+        {%- endfor -%}
+        {%- if product.media.size > 1 -%}
+          <div class="thumbs">
+            {%- for media in product.media -%}
+              <button type="button" data-thumb="{{ forloop.index }}" class="{% if forloop.first %}is-on{% endif %}" aria-label="{{ 'products.show_photo' | t: number: forloop.index }}">
+                {{ media.preview_image | image_url: width: 200 | image_tag: alt: '' }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="tile gallery__main">
+          {% render 'gem-placeholder', product: product, size: 'large' %}
+          {%- if m.uniek.value -%}<span class="tag">{{ 'products.unique' | t }}</span>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 12px">
+      {%- if current_variant.sku != blank -%}<span class="meta">{{ 'products.code' | t }} {{ current_variant.sku }}</span>{%- endif -%}
+      <h1 style="font-size: 30px; line-height: 1.15">{{ product.title }}</h1>
+      <div class="price" style="justify-content: flex-start; font-size: 20px">
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <s style="font-size: 15px">{{ current_variant.compare_at_price | money }}</s>
+          <strong class="is-sale">{{ current_variant.price | money }}</strong>
+        {%- else -%}
+          <strong>{{ current_variant.price | money }}</strong>
+        {%- endif -%}
+      </div>
+      {%- if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity == 1 -%}
+        <span class="stock">{{ 'products.last_one' | t }}</span>
+      {%- endif -%}
+
+      {%- if product.description != blank -%}<div class="rte" style="color: var(--muted)">{{ product.description }}</div>{%- endif -%}
+
+      <div class="facts">
+        {%- if m.steen != blank -%}<div><span>{{ 'products.stone' | t }}</span><b>{{ m.steen.value }}{% if m.behandeling != blank %}, {{ m.behandeling.value }}{% endif %}</b></div>{%- endif -%}
+        <div><span>{{ 'products.silver' | t }}</span><b>925 sterling</b></div>
+        {%- if m.afmeting != blank -%}<div><span>{{ 'products.size' | t }}</span><b>{{ m.afmeting.value }}</b></div>{%- endif -%}
+        {%- if current_variant.weight > 0 -%}<div><span>{{ 'products.weight' | t }}</span><b>{{ current_variant.weight | weight_with_unit }}</b></div>{%- endif -%}
+        {%- if m.land != blank -%}<div><span>{{ 'products.origin' | t }}</span><b>{{ m.land.value }}</b></div>{%- endif -%}
+      </div>
+
+      {%- form 'product', product, data-product-form: '', style: 'display: flex; flex-direction: column; gap: 14px' -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <fieldset class="opts">
+              <legend>{{ option.name }}</legend>
+              {%- for value in option.values -%}
+                <label class="opt">
+                  <input type="radio" data-option name="option-{{ forloop.parentloop.index }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                  <span>{{ value }}</span>
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- endfor -%}
+          <script type="application/json" data-variants>
+            [
+              {%- for variant in product.variants -%}
+                {"id": {{ variant.id }}, "available": {{ variant.available | json }}, "options": {{ variant.options | json }}}{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            ]
+          </script>
+        {%- endunless -%}
+        <button class="btn btn--block" type="submit" {% unless current_variant.available %}disabled{% endunless %} data-label-add="{{ 'products.add' | t }}" data-label-sold-out="{{ 'products.sold_out' | t }}">
+          {%- if current_variant.available -%}{{ 'products.add' | t }}{%- else -%}{{ 'products.sold_out' | t }}{%- endif -%}
+        </button>
+        {{ form | payment_terms }}
+      {%- endform -%}
+      <p class="meta" style="text-align: center; margin: 0">{{ settings.payment_line }}</p>
+
+      <div class="acc">
+        {%- for block in section.blocks -%}
+          <details {{ block.shopify_attributes }} {% if block.settings.open %}open{% endif %}>
+            <summary>{{ block.settings.title }}</summary>
+            <div class="rte">{{ block.settings.text }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "blocks": [{
+    "type": "accordion",
+    "name": "Uitklapblok",
+    "settings": [
+      { "type": "text", "id": "title", "label": "Titel", "default": "Zilver en waarborgmerk" },
+      { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>925 sterling zilver. Stukken vanaf 8 gram laten we in Nederland keuren en stempelen voordat ze online komen.</p>" },
+      { "type": "checkbox", "id": "open", "label": "Standaard open", "default": false }
+    ]
+  }]
+}
+{% endschema %}

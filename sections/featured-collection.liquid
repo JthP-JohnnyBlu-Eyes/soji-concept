@@ -1,0 +1,32 @@
+{%- assign collection = section.settings.collection -%}
+<section class="wrap s">
+  <div class="head">
+    <div>
+      <h2>{{ section.settings.title | default: collection.title }}</h2>
+      {%- if section.settings.text != blank -%}<p class="sub">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    {%- if collection != blank -%}<a href="{{ collection.url }}" style="font-weight: 500">{{ 'general.view_all' | t }}</a>{%- endif -%}
+  </div>
+  <div class="grid">
+    {%- if collection != blank and collection.products_count > 0 -%}
+      {%- for product in collection.products limit: section.settings.limit -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      <p class="notice" style="grid-column: 1 / -1">{{ 'sections.empty_collection' | t }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Uitgelichte collectie",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titel", "default": "Nieuw binnen" },
+    { "type": "text", "id": "text", "label": "Ondertitel" },
+    { "type": "collection", "id": "collection", "label": "Collectie" },
+    { "type": "range", "id": "limit", "label": "Aantal producten", "min": 2, "max": 12, "step": 2, "default": 4 }
+  ],
+  "presets": [{ "name": "Uitgelichte collectie" }]
+}
+{% endschema %}

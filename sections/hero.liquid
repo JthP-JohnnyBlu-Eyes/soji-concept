@@ -1,0 +1,41 @@
+<section class="hero">
+  <div class="hero__in">
+    <div class="hero__text">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h1>{{ section.settings.title }} <em>{{ section.settings.title_accent }}</em></h1>
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+      <div class="row" style="margin-top: 6px">
+        {%- if section.settings.button_1 != blank -%}<a class="btn btn--ivory" href="{{ section.settings.link_1 | default: routes.all_products_collection_url }}">{{ section.settings.button_1 }}</a>{%- endif -%}
+        {%- if section.settings.button_2 != blank -%}<a class="btn btn--ghost" href="{{ section.settings.link_2 | default: routes.collections_url }}">{{ section.settings.button_2 }}</a>{%- endif -%}
+      </div>
+    </div>
+    {%- if section.settings.image != blank -%}
+      <div class="hero__img">{{ section.settings.image | image_url: width: 1200 | image_tag: widths: '600, 900, 1200', sizes: '(min-width: 900px) 40vw, 100vw' }}</div>
+    {%- else -%}
+      <div class="dots" aria-hidden="true">
+        {%- assign stones = 'Turquoise,Maansteen,Labradoriet,Malachiet,Amethist,Carneool,Rozenkwarts,Lapis lazuli,Koraal,Onyx,Granaat,Amber' | split: ',' -%}
+        {%- for stone in stones -%}
+          <span class="dot gem" style="background: {% render 'stone-color', name: stone %}"></span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Bovenregel", "default": "India · Tibet · Nepal · Mexico" },
+    { "type": "text", "id": "title", "label": "Titel", "default": "Zilver met een verhaal," },
+    { "type": "text", "id": "title_accent", "label": "Titel, cursief deel", "default": "voor jouw intentie" },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Handgemaakte sieraden van 925 sterling zilver en echte edelstenen. Stuk voor stuk met de hand uitgekozen." },
+    { "type": "image_picker", "id": "image", "label": "Foto (leeg = gekleurde stenen)" },
+    { "type": "text", "id": "button_1", "label": "Knop 1", "default": "Shop nieuw binnen" },
+    { "type": "url", "id": "link_1", "label": "Link knop 1" },
+    { "type": "text", "id": "button_2", "label": "Knop 2", "default": "Vind je steen" },
+    { "type": "url", "id": "link_2", "label": "Link knop 2" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

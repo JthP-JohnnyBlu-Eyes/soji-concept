@@ -1,0 +1,46 @@
+<div class="wrap duo" style="margin-top: 28px">
+  <div class="panel-dark">
+    <span class="eyebrow">{{ section.settings.insta_eyebrow }}</span>
+    <h2>{{ section.settings.insta_title }}</h2>
+    <form class="row" action="{{ routes.search_url }}" method="get" role="search">
+      <label class="sr" for="code-{{ section.id }}">{{ 'general.product_code' | t }}</label>
+      <input class="field" id="code-{{ section.id }}" type="search" name="q" placeholder="{{ 'general.code_placeholder' | t }}">
+      <input type="hidden" name="type" value="product">
+      <button class="btn btn--ivory" type="submit">{{ 'general.search' | t }}</button>
+    </form>
+    <p>{{ section.settings.insta_text }}</p>
+  </div>
+  <div class="panel-light" style="text-align: center; align-items: center">
+    <span class="eyebrow">{{ section.settings.news_eyebrow }}</span>
+    <h2 style="font-size: 26px">{{ section.settings.news_title }}</h2>
+    <p style="margin: 0; color: var(--muted); font-size: 14px">{{ section.settings.news_text }}</p>
+    {%- form 'customer', id: 'newsletter', style: 'display: flex; flex-direction: column; gap: 8px; width: 100%' -%}
+      <input type="hidden" name="contact[tags]" value="nieuwsbrief">
+      {%- if form.posted_successfully? -%}
+        <p class="notice">{{ 'newsletter.success' | t }}</p>
+      {%- else -%}
+        <label class="sr" for="mail-{{ section.id }}">{{ 'newsletter.email' | t }}</label>
+        <input class="field" id="mail-{{ section.id }}" type="email" name="contact[email]" required autocomplete="email" placeholder="{{ 'newsletter.placeholder' | t }}">
+        <button class="btn" type="submit">{{ 'newsletter.button' | t }}</button>
+        {%- if form.errors -%}<p class="notice">{{ form.errors | default_errors }}</p>{%- endif -%}
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram en nieuwsbrief",
+  "settings": [
+    { "type": "header", "content": "Instagram" },
+    { "type": "text", "id": "insta_eyebrow", "label": "Bovenregel", "default": "Gezien op Instagram" },
+    { "type": "text", "id": "insta_title", "label": "Titel", "default": "Zag je een stuk in onze story? Zoek op de code." },
+    { "type": "text", "id": "insta_text", "label": "Tekst", "default": "Elke post en story krijgt de code van het stuk erbij. Volg @soji.gifts" },
+    { "type": "header", "content": "Nieuwsbrief" },
+    { "type": "text", "id": "news_eyebrow", "label": "Bovenregel", "default": "7 april 2027" },
+    { "type": "text", "id": "news_title", "label": "Titel", "default": "De nieuwe India-collectie" },
+    { "type": "text", "id": "news_text", "label": "Tekst", "default": "Volg onze inkooptrip en zie de nieuwe stukken als eerste." }
+  ],
+  "presets": [{ "name": "Instagram en nieuwsbrief" }]
+}
+{% endschema %}

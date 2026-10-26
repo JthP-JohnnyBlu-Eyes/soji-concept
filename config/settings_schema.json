@@ -1,0 +1,20 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Soji",
+    "theme_version": "0.1.0",
+    "theme_author": "Soji",
+    "theme_documentation_url": "https://github.com/JthP-JohnnyBlu-Eyes/soji-concept",
+    "theme_support_url": "https://github.com/JthP-JohnnyBlu-Eyes/soji-concept"
+  },
+  {
+    "name": "Huisstijl",
+    "settings": [
+      { "type": "color", "id": "color_accent", "label": "Turquoise (knoppen)", "default": "#0A7F81" },
+      { "type": "color", "id": "color_dark", "label": "Petrol (donker)", "default": "#0E3F42" },
+      { "type": "color", "id": "color_background", "label": "Ivoor (achtergrond)", "default": "#F7F2E7" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "text", "id": "payment_line", "label": "Betaalregel onder de knop", "default": "iDEAL | Wero · Visa · Mastercard · PayPal" }
+    ]
+  }
+]

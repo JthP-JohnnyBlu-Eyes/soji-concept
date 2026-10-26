@@ -1,0 +1,44 @@
+<header class="top">
+  <div class="top__in">
+    <button class="icon mobile-only" type="button" data-menu-toggle aria-controls="menu-{{ section.id }}" aria-expanded="false" aria-label="{{ 'general.menu' | t }}">
+      {% render 'icon', name: 'menu' %}
+    </button>
+    <nav class="desknav" aria-label="{{ 'general.main_menu' | t }}">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if forloop.last and section.settings.accent_last %} class="is-accent"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <a class="brand" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name }}
+      {%- else -%}
+        <img src="{{ 'soji-logo.png' | asset_url }}" alt="{{ shop.name }}" width="400" height="171">
+      {%- endif -%}
+      {%- if section.settings.tagline != blank -%}<span>{{ section.settings.tagline }}</span>{%- endif -%}
+    </a>
+    <div style="display: flex">
+      <a class="icon" href="{{ routes.search_url }}" aria-label="{{ 'general.search' | t }}">{% render 'icon', name: 'search' %}</a>
+      <a class="icon" href="{{ routes.cart_url }}" aria-label="{{ 'general.cart_count' | t: count: cart.item_count }}">
+        {% render 'icon', name: 'bag' %}
+        {%- if cart.item_count > 0 -%}<span class="badge" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
+      </a>
+    </div>
+  </div>
+  <nav class="menu" id="menu-{{ section.id }}" aria-label="{{ 'general.menu' | t }}">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo (leeg = standaard Soji-logo)" },
+    { "type": "text", "id": "tagline", "label": "Ondertitel", "default": "Seeds of Joy Intentions" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "accent_last", "label": "Laatste menu-item in turquoise (bijv. Topstukken)", "default": true }
+  ]
+}
+{% endschema %}

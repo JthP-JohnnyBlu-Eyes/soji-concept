@@ -1,0 +1,17 @@
+{%- if section.settings.text != blank -%}
+  {%- if section.settings.link != blank -%}
+    <a class="bar" href="{{ section.settings.link }}">{{ section.settings.text }}</a>
+  {%- else -%}
+    <p class="bar" style="margin: 0">{{ section.settings.text }}</p>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Aankondigingsbalk",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Tekst", "default": "Vanaf 1 december: topstukken in de promotie →" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ]
+}
+{% endschema %}

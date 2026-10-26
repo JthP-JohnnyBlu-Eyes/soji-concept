@@ -1,0 +1,17 @@
+<div class="wrap s">
+  <div class="head"><h1 style="font-size: 32px">{{ 'collections.all' | t }}</h1></div>
+  <div class="swatches" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))">
+    {%- for collection in collections -%}
+      {%- if collection.products_count > 0 -%}
+        <a class="swatch" href="{{ collection.url }}">
+          {%- capture swatch -%}{% render 'stone-color', name: collection.title %}{%- endcapture -%}
+          <i style="background: {{ swatch | strip }}"></i>{{ collection.title }}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Alle collecties" }
+{% endschema %}

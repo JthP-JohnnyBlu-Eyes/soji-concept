@@ -1,0 +1,11 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_accent": "#0A7F81",
+      "color_dark": "#0E3F42",
+      "color_background": "#F7F2E7",
+      "payment_line": "iDEAL | Wero · Visa · Mastercard · PayPal"
+    }
+  }
+}

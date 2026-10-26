@@ -1,0 +1,42 @@
+<section class="wrap s">
+  <div class="head"><div><h2>{{ section.settings.title }}</h2>{%- if section.settings.text != blank -%}<p class="sub">{{ section.settings.text }}</p>{%- endif -%}</div></div>
+  <div class="scroller">
+    {%- for block in section.blocks -%}
+      {%- assign c = block.settings.collection -%}
+      {%- if c == blank or c.products_count > 0 or request.design_mode -%}
+        <a class="stone" href="{{ c.url | default: '#' }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 200 | image_tag: alt: '' }}
+          {%- else -%}
+            <i class="gem" style="background: {{ block.settings.color }}"></i>
+          {%- endif -%}
+          <b>{{ block.settings.name }}</b>
+          <small>{{ block.settings.meaning }}</small>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop op edelsteen",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titel", "default": "Shop op edelsteen" },
+    { "type": "text", "id": "text", "label": "Ondertitel", "default": "Elke steen zijn eigen betekenis." }
+  ],
+  "max_blocks": 12,
+  "blocks": [{
+    "type": "stone",
+    "name": "Steen",
+    "settings": [
+      { "type": "text", "id": "name", "label": "Naam", "default": "Maansteen" },
+      { "type": "text", "id": "meaning", "label": "Betekenis", "default": "Intuïtie" },
+      { "type": "color", "id": "color", "label": "Kleur", "default": "#E4E8EC" },
+      { "type": "image_picker", "id": "image", "label": "Foto (optioneel)" },
+      { "type": "collection", "id": "collection", "label": "Collectie" }
+    ]
+  }],
+  "presets": [{ "name": "Shop op edelsteen" }]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+<div class="usp">
+  {%- for block in section.blocks -%}
+    <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Voordelen",
+  "max_blocks": 4,
+  "blocks": [{ "type": "item", "name": "Voordeel", "settings": [{ "type": "text", "id": "text", "label": "Tekst", "default": "925 sterling zilver" }] }],
+  "presets": [{ "name": "Voordelen", "blocks": [{ "type": "item" }] }]
+}
+{% endschema %}

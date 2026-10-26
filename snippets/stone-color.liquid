@@ -1,0 +1,20 @@
+{%- comment -%}
+  Returns the swatch colour for a colour group or stone name.
+  Usage: {% render 'stone-color', name: 'Groen' %}
+{%- endcomment -%}
+{%- assign key = name | downcase | strip -%}
+{%- case key -%}
+  {%- when 'turquoise & blauw', 'turquoise' -%}#3FB8B2
+  {%- when 'groen', 'malachiet' -%}#1F7A4D
+  {%- when 'paars', 'amethist' -%}#7B4FA8
+  {%- when 'roze', 'rozenkwarts' -%}#EBC2C6
+  {%- when 'rood & oranje', 'carneool' -%}#C2552E
+  {%- when 'koraal' -%}#E07A5F
+  {%- when 'granaat' -%}#7A1F2B
+  {%- when 'bruin & goud', 'amber' -%}#C98A2E
+  {%- when 'wit & regenboog', 'maansteen' -%}#E4E8EC
+  {%- when 'labradoriet' -%}#4F6B78
+  {%- when 'lapis lazuli', 'lapis' -%}#27428F
+  {%- when 'zwart', 'onyx' -%}#1C1C1C
+  {%- else -%}#D9DDE0
+{%- endcase -%}

@@ -1,0 +1,22 @@
+<section class="wrap s">
+  <a class="panel-light" href="{{ section.settings.link | default: '#' }}">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 style="font-size: 26px">{{ section.settings.title }}</h2>
+    <p style="margin: 0; color: var(--muted)">{{ section.settings.text }}</p>
+    {%- if section.settings.link_label != blank -%}<span style="font-weight: 600; color: var(--teal)">{{ section.settings.link_label }} →</span>{%- endif -%}
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Verhaal-blok",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Bovenregel", "default": "Ons verhaal" },
+    { "type": "text", "id": "title", "label": "Titel", "default": "Van de Prinsestraat naar soji.nl" },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Jarenlang vond je ons in Den Haag. Nu brengen we ons zilver online, met dezelfde liefde voor het ambacht." },
+    { "type": "text", "id": "link_label", "label": "Linktekst", "default": "Lees ons verhaal" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Verhaal-blok" }]
+}
+{% endschema %}
