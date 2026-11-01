@@ -5,8 +5,9 @@
       {%- assign c = block.settings.collection -%}
       {%- if c == blank or c.products_count > 0 or request.design_mode -%}
         <a class="stone" href="{{ c.url | default: '#' }}" {{ block.shopify_attributes }}>
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: width: 200 | image_tag: alt: '' }}
+          {%- assign photo = block.settings.image | default: c.products.first.featured_image -%}
+          {%- if photo != blank -%}
+            {{ photo | image_url: width: 300, height: 300, crop: 'center' | image_tag: alt: '' }}
           {%- else -%}
             <i class="gem" style="background: {{ block.settings.color }}"></i>
           {%- endif -%}
@@ -33,7 +34,7 @@
       { "type": "text", "id": "name", "label": "Naam", "default": "Maansteen" },
       { "type": "text", "id": "meaning", "label": "Betekenis", "default": "Intuïtie" },
       { "type": "color", "id": "color", "label": "Kleur", "default": "#E4E8EC" },
-      { "type": "image_picker", "id": "image", "label": "Foto (optioneel)" },
+      { "type": "image_picker", "id": "image", "label": "Foto (optioneel)", "info": "Leeg = de hoofdfoto van het eerste product in de collectie, vierkant bijgesneden." },
       { "type": "collection", "id": "collection", "label": "Collectie" }
     ]
   }],
