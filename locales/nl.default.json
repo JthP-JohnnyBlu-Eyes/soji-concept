@@ -70,7 +70,10 @@
     "email": "E-mailadres",
     "placeholder": "jij@voorbeeld.nl",
     "button": "Zet me op de lijst",
-    "success": "Dank je, je staat op de lijst."
+    "success": "Dank je, je staat op de lijst.",
+    "opt_newsletter": "Nieuwsbrief",
+    "opt_india": "De nieuwe India-collectie",
+    "opt_legend": "Waar wil je over horen?"
   },
   "password": {
     "enter": "Winkel openen met wachtwoord",
