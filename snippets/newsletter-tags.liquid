@@ -1,0 +1,16 @@
+{%- comment -%}
+  Zet de aangevinkte keuzes (nieuwsbrief, India-collectie, Mexico-collectie)
+  als klant-tags in het verborgen veld contact[tags], zodat je in
+  Shopify › Klanten op elke tag kunt filteren.
+{%- endcomment -%}
+<script>
+  document.querySelectorAll('[data-tags]').forEach(function (hidden) {
+    var form = hidden.form;
+    if (form.dataset.tagsBound) return;
+    form.dataset.tagsBound = '1';
+    form.addEventListener('submit', function () {
+      var tags = Array.from(form.querySelectorAll('[data-tag]:checked')).map(function (c) { return c.value; });
+      hidden.value = (tags.length ? tags : ['nieuwsbrief']).join(', ');
+    });
+  });
+</script>
