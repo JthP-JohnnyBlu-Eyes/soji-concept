@@ -15,16 +15,22 @@
     <h2 style="font-size: 26px">{{ section.settings.news_title }}</h2>
     <p style="margin: 0; color: var(--muted); font-size: 14px">{{ section.settings.news_text }}</p>
     {%- form 'customer', id: 'newsletter', style: 'display: flex; flex-direction: column; gap: 8px; width: 100%' -%}
-      <input type="hidden" name="contact[tags]" value="nieuwsbrief">
+      <input type="hidden" name="contact[tags]" value="nieuwsbrief" data-tags>
       {%- if form.posted_successfully? -%}
         <p class="notice">{{ 'newsletter.success' | t }}</p>
       {%- else -%}
         <label class="sr" for="mail-{{ section.id }}">{{ 'newsletter.email' | t }}</label>
         <input class="field" id="mail-{{ section.id }}" type="email" name="contact[email]" required autocomplete="email" placeholder="{{ 'newsletter.placeholder' | t }}">
         <button class="btn" type="submit">{{ 'newsletter.button' | t }}</button>
+        <fieldset style="border: 0; padding: 0; margin: 4px 0 0; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 14px; color: var(--muted)">
+          <legend class="sr">{{ 'newsletter.opt_legend' | t }}</legend>
+          <label><input type="checkbox" value="nieuwsbrief" data-tag checked> {{ 'newsletter.opt_newsletter' | t }}</label>
+          <label><input type="checkbox" value="mexico-collectie" data-tag> {{ 'newsletter.opt_mexico' | t }}</label>
+        </fieldset>
         {%- if form.errors -%}<p class="notice">{{ form.errors | default_errors }}</p>{%- endif -%}
       {%- endif -%}
     {%- endform -%}
+    {%- render 'newsletter-tags' -%}
   </div>
 </div>
 
